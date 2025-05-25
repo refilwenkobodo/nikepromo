@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKE | Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>NIKE </h1>
+            <img src="images/logo.png" alt="Logo">
+        </div>
+           <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="aboutus.html" >About Us</a></li>
+                <li><a href="products.html" >Products</a></li>
+                <li><a href="contactus.html" class="active">Contact Us</a></li>
+                <li><a href="feedback.html" >Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="contactus-container">
+        <h2 style="text-align: center;">Contact Us</h2>
+        <form id="form" action="index.html" method="post" onsubmit="return validateForm()">
+    <div>
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Your Name" id="name" required>
+        <span id="nameError" class="error"></span>
+   
+        <label for="email">Email</label>
+        <input type="email" name="Email" id="email" placeholder="Your Email" required>
+        <span id="emailError" class="error"></span>
+   
+        <label for="number">Contact Number</label>
+        <input type="tel" name="ContactNumber" id="number" placeholder="Your Number" required>
+        <span id="numberError" class="error"></span>
+    
+        <label for="feedback">Message</label>
+        <textarea name="Message" id="feedback" placeholder="Your Message" required></textarea>
+        <span id="feedbackError" class="error"></span>
+
+        <button type="submit">Submit</button>
+   
+</form>
+
+<script>
+    function validateForm() {
+        let isValid = true;
+        
+        let name = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let number = document.getElementById("number").value.trim();
+        let feedback = document.getElementById("feedback").value.trim();
+        
+        let nameError = document.getElementById("nameError");
+        let emailError = document.getElementById("emailError");
+        let numberError = document.getElementById("numberError");
+        let feedbackError = document.getElementById("feedbackError");
+        
+        // Reset errors
+        nameError.textContent = "";
+        emailError.textContent = "";
+        numberError.textContent = "";
+        feedbackError.textContent = "";
+        
+        let namePattern = /^[A-Za-z\s]+$/;
+        if (name.length < 3 || !namePattern.test(name)) {
+            nameError.textContent = "Name must be at least 3 characters long and contain only letters";
+            isValid = false;
+        }
+        
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            emailError.textContent = "Enter a valid email address";
+            isValid = false;
+        }
+        
+        let numberPattern = /^\d{7,15}$/;
+        if (!numberPattern.test(number)) {
+            numberError.textContent = "Enter a valid contact number (7-15 digits)";
+            isValid = false;
+        }
+
+        if (feedback.length < 10) {
+            feedbackError.textContent = "Message must be at least 10 characters long";
+            isValid = false;
+        }
+        
+        return isValid;
+    }
+</script>
+    </section>
+    <footer>
+        <p>&copy; 2025 Nike.All rights reserved </p>
+    </footer>
+</body>
+</html>

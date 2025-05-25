@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKE | Feedback</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>NIKE </h1>
+            <img src="images/logo.png" alt="Logo">
+        </div>
+           <nav>
+            <ul>
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="aboutus.html" >About Us</a></li>
+                <li><a href="products.html" >Products</a></li>
+                <li><a href="contactus.html" >Contact Us</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="feedback-container">
+        <h2 style="text-align: center;">Feedback Form</h2>
+    <form id="feedbackForm" action="index.html " method="post" onsubmit="return validateForm()">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+        <span id="nameError" class="error"></span>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+        <span id="emailError" class="error"></span>
+
+        <label for="rating">Rating</label>
+        <select id="rating" name="rating">
+            <option value="" disabled selected>Select a rating</option>
+            <option value="5">Excellent</option>
+            <option value="4">Very Good</option>
+            <option value="3">Good</option>
+            <option value="2">Fair</option>
+            <option value="1">Poor</option>
+        </select>
+        <span id="ratingError" class="error"></span>
+        
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments"></textarea>
+        <span id="commentsError" class="error"></span>
+     
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let rating = document.getElementById("rating").value;
+            let comments = document.getElementById("comments").value.trim();
+
+            let nameError = document.getElementById("nameError");
+            let emailError = document.getElementById("emailError");
+            let ratingError = document.getElementById("ratingError");
+            let commentsError = document.getElementById("commentsError");
+
+            // Clear previous errors
+            nameError.textContent = "";
+            emailError.textContent = "";
+            ratingError.textContent = "";
+            commentsError.textContent = "";
+
+            // Validate name
+            if (!/^[A-Za-z\s]+$/.test(name)) {
+                nameError.textContent = " Name should only contain letters and spaces.";
+                isValid = false;
+            }
+
+            // Validate email
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                emailError.textContent = " Please enter a valid email address.";
+                isValid = false;
+            }
+
+            // Validate rating
+            if (rating === "") {
+                ratingError.textContent = " Please select a rating.";
+                isValid = false;
+            }
+
+            // Validate comments
+            if (comments.length < 10) {
+                commentsError.textContent = " Comments must be at least 10 characters long.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+    </section>
+    <footer>
+        <p>&copy; 2025 Nike.All rights reserved </p>
+    </footer>
+</body>
+</html>
+
+
